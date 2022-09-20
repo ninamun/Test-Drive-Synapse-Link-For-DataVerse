@@ -1,0 +1,89 @@
+{
+	"name": "Dataflow1",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"name": "source1"
+				}
+			],
+			"sinks": [
+				{
+					"linkedService": {
+						"referenceName": "AzureSynapseAnalytics1",
+						"type": "LinkedServiceReference"
+					},
+					"name": "sink1"
+				}
+			],
+			"transformations": [],
+			"scriptLines": [
+				"source(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     store: 'synapse',",
+				"     databaseType: 'spark',",
+				"     format: 'table',",
+				"     database: 'dataverse_salestrial_unq2e011e8a2ac04bb0a6cc27f6b31c8',",
+				"     tableName: 'account') ~> source1",
+				"source1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          object_id as integer,",
+				"          name as string,",
+				"          column_id as integer,",
+				"          system_type_id as integer,",
+				"          user_type_id as integer,",
+				"          max_length as short,",
+				"          precision as integer,",
+				"          scale as integer,",
+				"          collation_name as string,",
+				"          is_nullable as boolean,",
+				"          is_ansi_padded as boolean,",
+				"          is_rowguidcol as boolean,",
+				"          is_identity as boolean,",
+				"          is_computed as boolean,",
+				"          is_filestream as boolean,",
+				"          is_replicated as boolean,",
+				"          is_non_sql_subscribed as boolean,",
+				"          is_merge_published as boolean,",
+				"          is_dts_replicated as boolean,",
+				"          is_xml_document as boolean,",
+				"          xml_collection_id as integer,",
+				"          default_object_id as integer,",
+				"          rule_object_id as integer,",
+				"          is_sparse as boolean,",
+				"          is_column_set as boolean,",
+				"          generated_always_type as integer,",
+				"          generated_always_type_desc as string,",
+				"          encryption_type as integer,",
+				"          encryption_type_desc as string,",
+				"          encryption_algorithm_name as string,",
+				"          column_encryption_key_id as integer,",
+				"          column_encryption_key_database_name as string,",
+				"          is_hidden as boolean,",
+				"          is_masked as boolean,",
+				"          graph_type as integer,",
+				"          graph_type_desc as string,",
+				"          is_data_deletion_filter_column as boolean,",
+				"          ledger_view_column_type as integer,",
+				"          ledger_view_column_type_desc as string,",
+				"          is_dropped_ledger_column as boolean",
+				"     ),",
+				"     format: 'table',",
+				"     store: 'synapseanalytics',",
+				"     schemaName: 'sys',",
+				"     tableName: 'all_columns',",
+				"     insertable: true,",
+				"     updateable: false,",
+				"     deletable: false,",
+				"     upsertable: false,",
+				"     allowCopyCommand: true,",
+				"     staged: true,",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError') ~> sink1"
+			]
+		}
+	}
+}
